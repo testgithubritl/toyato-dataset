@@ -1,0 +1,252 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\Nithya> python
+Python 3.11.1 (tags/v3.11.1:a7a450f, Dec  6 2022, 19:58:39) [MSC v.1934 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import os
+>>> import pandas as pd
+>>> import numpy as np
+>>> cars_data=pd.read_csv("C:/Users/Nithya/Downloads/sem IV/machine learning/datasets/Toyota.csv")
+>>> cars_data
+      Unnamed: 0  Price   Age     KM FuelType   HP  MetColor  Automatic    CC  Doors  Weight
+0              0  13500  23.0  46986   Diesel   90       1.0          0  2000  three    1165
+1              1  13750  23.0  72937   Diesel   90       1.0          0  2000      3    1165
+2              2  13950  24.0  41711   Diesel   90       NaN          0  2000      3    1165
+3              3  14950  26.0  48000   Diesel   90       0.0          0  2000      3    1165
+4              4  13750  30.0  38500   Diesel   90       0.0          0  2000      3    1170
+...          ...    ...   ...    ...      ...  ...       ...        ...   ...    ...     ...
+1431        1431   7500   NaN  20544   Petrol   86       1.0          0  1300      3    1025
+1432        1432  10845  72.0     ??   Petrol   86       0.0          0  1300      3    1015
+1433        1433   8500   NaN  17016   Petrol   86       0.0          0  1300      3    1015
+1434        1434   7250  70.0     ??      NaN   86       1.0          0  1300      3    1015
+1435        1435   6950  76.0      1   Petrol  110       0.0          0  1600      5    1114
+
+[1436 rows x 11 columns]
+>>> cars_data=pd.read_csv("C:/Users/Nithya/Downloads/sem IV/machine learning/datasets/Toyota.csv",index_col=0)
+>>> cars_data
+      Price   Age     KM FuelType   HP  MetColor  Automatic    CC  Doors  Weight
+0     13500  23.0  46986   Diesel   90       1.0          0  2000  three    1165
+1     13750  23.0  72937   Diesel   90       1.0          0  2000      3    1165
+2     13950  24.0  41711   Diesel   90       NaN          0  2000      3    1165
+3     14950  26.0  48000   Diesel   90       0.0          0  2000      3    1165
+4     13750  30.0  38500   Diesel   90       0.0          0  2000      3    1170
+...     ...   ...    ...      ...  ...       ...        ...   ...    ...     ...
+1431   7500   NaN  20544   Petrol   86       1.0          0  1300      3    1025
+1432  10845  72.0     ??   Petrol   86       0.0          0  1300      3    1015
+1433   8500   NaN  17016   Petrol   86       0.0          0  1300      3    1015
+1434   7250  70.0     ??      NaN   86       1.0          0  1300      3    1015
+1435   6950  76.0      1   Petrol  110       0.0          0  1600      5    1114
+
+[1436 rows x 10 columns]
+>>> cars_data1=cars_data.copy(deep=True)
+>>> cars_data1.size
+14360
+>>> cars_data1.shape
+(1436, 10)
+>>> cars_data1.ndim
+2
+>>> cars_data1.memory_usage()
+Index        11488
+Price        11488
+Age          11488
+KM           11488
+FuelType     11488
+HP           11488
+MetColor     11488
+Automatic    11488
+CC           11488
+Doors        11488
+Weight       11488
+dtype: int64
+>>> cars_data1.memory_usage().sum()
+126368
+>>> cars_data1.isnull()
+      Price    Age     KM  FuelType     HP  MetColor  Automatic     CC  Doors  Weight
+0     False  False  False     False  False     False      False  False  False   False
+1     False  False  False     False  False     False      False  False  False   False
+2     False  False  False     False  False      True      False  False  False   False
+3     False  False  False     False  False     False      False  False  False   False
+4     False  False  False     False  False     False      False  False  False   False
+...     ...    ...    ...       ...    ...       ...        ...    ...    ...     ...
+1431  False   True  False     False  False     False      False  False  False   False
+1432  False  False  False     False  False     False      False  False  False   False
+1433  False   True  False     False  False     False      False  False  False   False
+1434  False  False  False      True  False     False      False  False  False   False
+1435  False  False  False     False  False     False      False  False  False   False
+
+[1436 rows x 10 columns]
+>>> cars_data1.isnull().sum()
+Price          0
+Age          100
+KM             0
+FuelType     100
+HP             0
+MetColor     150
+Automatic      0
+CC             0
+Doors          0
+Weight         0
+dtype: int64
+>>> cars_data1.columns
+Index(['Price', 'Age', 'KM', 'FuelType', 'HP', 'MetColor', 'Automatic', 'CC',
+       'Doors', 'Weight'],
+      dtype='object')
+>>> np.unique(cars_data1['Price'])
+array([ 4350,  4400,  4450,  4750,  5150,  5250,  5600,  5740,  5750,
+        5751,  5800,  5845,  5900,  5950,  6000,  6150,  6250,  6400,
+        6425,  6450,  6490,  6495,  6500,  6550,  6640,  6650,  6750,
+        6800,  6900,  6950,  6990,  6999,  7000,  7145,  7150,  7200,
+        7250,  7300,  7350,  7400,  7450,  7460,  7490,  7495,  7499,
+        7500,  7600,  7750,  7795,  7800,  7850,  7900,  7950,  7990,
+        7995,  7999,  8000,  8050,  8100,  8150,  8200,  8250,  8400,
+        8450,  8490,  8495,  8500,  8600,  8695,  8700,  8745,  8750,
+        8800,  8850,  8895,  8900,  8950,  8990,  8995,  9000,  9130,
+        9200,  9245,  9250,  9390,  9400,  9450,  9475,  9500,  9550,
+        9650,  9695,  9700,  9750,  9795,  9799,  9800,  9850,  9895,
+        9900,  9930,  9940,  9950,  9980,  9990,  9995, 10000, 10250,
+       10295, 10350, 10400, 10450, 10495, 10500, 10600, 10750, 10800,
+       10845, 10850, 10895, 10900, 10950, 10990, 10995, 11000, 11250,
+       11290, 11450, 11480, 11495, 11500, 11650, 11690, 11695, 11700,
+       11710, 11750, 11790, 11895, 11900, 11925, 11930, 11950, 11990,
+       12000, 12200, 12250, 12295, 12400, 12450, 12495, 12500, 12695,
+       12750, 12850, 12900, 12950, 12995, 13000, 13250, 13450, 13500,
+       13750, 13875, 13950, 13995, 14350, 14750, 14900, 14950, 14990,
+       15250, 15450, 15500, 15750, 15800, 15850, 15950, 15999, 16250,
+       16350, 16450, 16500, 16650, 16750, 16868, 16895, 16900, 16950,
+       17200, 17250, 17450, 17495, 17650, 17795, 17900, 17950, 18245,
+       18450, 18500, 18600, 18700, 18750, 18800, 18900, 18950, 18990,
+       19000, 19250, 19450, 19500, 19600, 19750, 19900, 19950, 20500,
+       20750, 20950, 21125, 21500, 21750, 21950, 22000, 22250, 22500,
+       22750, 22950, 23000, 23750, 23950, 24500, 24950, 24990, 31000,
+       31275, 32500], dtype=int64)
+>>> np.unique(cars_data1['Age'])
+array([ 1.,  2.,  4.,  6.,  7.,  8.,  9., 10., 11., 12., 13., 14., 15.,
+       16., 17., 18., 19., 20., 22., 23., 24., 25., 26., 27., 28., 29.,
+       30., 31., 32., 33., 34., 35., 36., 37., 38., 39., 40., 41., 42.,
+       43., 44., 45., 46., 47., 48., 49., 50., 51., 52., 53., 54., 55.,
+       56., 57., 58., 59., 60., 61., 62., 63., 64., 65., 66., 67., 68.,
+       69., 70., 71., 72., 73., 74., 75., 76., 77., 78., 79., 80., nan])
+>>> np.unique(cars_data1['KM'])
+array(['1', '10000', '100123', ..., '99865', '99971', '??'], dtype=object)
+>>> np.unique(cars_data1['FuelType'])
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<__array_function__ internals>", line 200, in unique
+  File "C:\Users\Nithya\AppData\Local\Programs\Python\Python311\Lib\site-packages\numpy\lib\arraysetops.py", line 274, in unique
+    ret = _unique1d(ar, return_index, return_inverse, return_counts,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nithya\AppData\Local\Programs\Python\Python311\Lib\site-packages\numpy\lib\arraysetops.py", line 336, in _unique1d
+    ar.sort()
+TypeError: '<' not supported between instances of 'float' and 'str'
+>>> np.unique(cars_data1['HP'])
+array(['107', '110', '116', '192', '69', '71', '72', '73', '86', '90',
+       '97', '98', '????'], dtype=object)
+>>> np.unique(cars_data1['MetColor'])
+array([ 0.,  1., nan])
+>>> np.unique(cars_data1['Automatic'])
+array([0, 1], dtype=int64)
+>>> np.unique(cars_data1['CC'])
+array([1300, 1332, 1398, 1400, 1587, 1598, 1600, 1800, 1900, 1975, 1995,
+       2000], dtype=int64)
+>>> np.unique(cars_data1['Doors'])
+array(['2', '3', '4', '5', 'five', 'four', 'three'], dtype=object)
+>>> np.unique(cars_data1['Weight'])
+array([1000, 1010, 1015, 1020, 1025, 1030, 1035, 1040, 1045, 1050, 1055,
+       1060, 1065, 1067, 1070, 1075, 1078, 1079, 1080, 1083, 1084, 1085,
+       1090, 1094, 1095, 1100, 1103, 1105, 1109, 1110, 1114, 1115, 1119,
+       1120, 1121, 1125, 1130, 1135, 1140, 1150, 1155, 1160, 1165, 1170,
+       1172, 1180, 1185, 1195, 1205, 1245, 1255, 1260, 1265, 1270, 1275,
+       1280, 1320, 1480, 1615], dtype=int64)
+>>> cars_data.info()
+<class 'pandas.core.frame.DataFrame'>
+Index: 1436 entries, 0 to 1435
+Data columns (total 10 columns):
+ #   Column     Non-Null Count  Dtype
+---  ------     --------------  -----
+ 0   Price      1436 non-null   int64
+ 1   Age        1336 non-null   float64
+ 2   KM         1436 non-null   object
+ 3   FuelType   1336 non-null   object
+ 4   HP         1436 non-null   object
+ 5   MetColor   1286 non-null   float64
+ 6   Automatic  1436 non-null   int64
+ 7   CC         1436 non-null   int64
+ 8   Doors      1436 non-null   object
+ 9   Weight     1436 non-null   int64
+dtypes: float64(2), int64(4), object(4)
+memory usage: 123.4+ KB
+>>> data=pd.read_csv(r"C:/Users/Nithya/Downloads/sem IV/machine learning/datasets/Toyota.csv",index_col=0,na_values=["??","????"])
+>>> data['Age'].fillna(data['Age'].mean(),inplace=True)
+>>> data['KM'].fillna(data['KM'].median(),inplace=True)
+>>> data['Doors'].replace('three',3,inplace=True)
+>>> data["Doors"].replace('four',4,inplace=True)
+>>> data["Doors"].replace('five',5,inplace=True)
+>>> data['Doors']=data["Doors"].astype("int64")
+>>> data["FuelType"]=data["FuelType"].astype("category")
+>>> data["FuelType"].fillna(data["FuelType"].mode()[0],inplace=True)
+>>> data['HP'].fillna(data['HP'].mean(),inplace=True)
+>>> data["MetColor"].fillna(data["MetColor"].mode()[0],inplace=True)
+>>> data["MetColor"]=data["MetColor"].astype("category")
+>>> data["Automatic"]=data["Automatic"].astype("category")
+>>> data.info()
+<class 'pandas.core.frame.DataFrame'>
+Index: 1436 entries, 0 to 1435
+Data columns (total 10 columns):
+ #   Column     Non-Null Count  Dtype
+---  ------     --------------  -----
+ 0   Price      1436 non-null   int64
+ 1   Age        1436 non-null   float64
+ 2   KM         1436 non-null   float64
+ 3   FuelType   1436 non-null   category
+ 4   HP         1436 non-null   float64
+ 5   MetColor   1436 non-null   category
+ 6   Automatic  1436 non-null   category
+ 7   CC         1436 non-null   int64
+ 8   Doors      1436 non-null   int64
+ 9   Weight     1436 non-null   int64
+dtypes: category(3), float64(3), int64(4)
+memory usage: 94.3 KB
+>>> data.isnull().sum()
+Price        0
+Age          0
+KM           0
+FuelType     0
+HP           0
+MetColor     0
+Automatic    0
+CC           0
+Doors        0
+Weight       0
+dtype: int64
+>>> from sklearn.model_selection import KFold
+>>> from sklearn.linear_model import LogisticRegression
+>>> from sklearn.model_selection import train_test_split
+>>> from sklearn.metrics import accuracy_score
+>>> data=pd.read_csv(r"C:/Users/Nithya/Downloads/sem IV/machine learning/datasets/Toyota.csv")
+>>> data1=pd.read_csv(r"C:/Users/Nithya/Downloads/sem IV/machine learning/datasets/Toyota.csv")
+>>> x = data.iloc[:, :1].values
+>>> x = data.iloc[:, 1:10].values
+>>> y = data.iloc[:, -1].values
+>>> kf = KFold(n_splits=5, shuffle=True, random_state=42)
+>>> fold_number=1
+>>> accuracies=[]
+>>> for train_index, test_index in kf.split(x):
+...     print(f"Fold {fold_number}")
+...     x_train, x_test = x.iloc[train_index], x.iloc[test_index]
+...     y_train, y_test = y.iloc[train_index], y.iloc[test_index]
+...     model = LogisticRegression(max_iter=1000)
+...     model.fit(x_train, y_train)
+...     y_pred = model.predict(x_test)
+...     accuracy = accuracy_score(y_test, y_pred)
+...     accuracies.append(accuracy)
+...     print(f"Fold {fold_number}")
+...     fold_number+= 1
+...
+Fold 1
+Traceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+AttributeError: 'numpy.ndarray' object has no attribute 'iloc'
+>>>
